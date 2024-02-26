@@ -5,10 +5,14 @@ using namespace std;
 int passwordStrength(const string& password) {
     int score = 0;
 
-    if (password.length() >= 8) {
-        score += 2;
+    if (password.length() >= 12) {
+        score += 3;  
+    } else if (password.length() >= 8) {
+        score += 2;  
     } else if (password.length() >= 6) {
-        score += 1;
+        score += 1;  
+    } else {
+        score+=0; 
     }
 
     bool hasLower = false, hasUpper = false, hasDigit = false, hasSpecial = false;
@@ -80,8 +84,19 @@ int main() {
     cout << "Generated Password: " << password << endl;
 
     int strength = passwordStrength(password);
+    cout << "Password strength: ";
 
-    cout << "Password strength: " << strength << "/6" << endl;
+    if (strength <= 2) {
+        cout << "VERY_WEAK";
+    } else if (strength <= 4) {
+        cout << "WEAK";
+    } else if (strength <= 6) {
+        cout << "MODERATE";
+    } else if (strength <= 8) {
+        cout << "STRONG";
+    } else {
+        cout << "VERY_STRONG";
+    }
 
     return 0;
 }
